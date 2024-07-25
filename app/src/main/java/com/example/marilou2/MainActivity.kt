@@ -10,7 +10,7 @@ import com.example.marilou2.adapter.ButtonAdapter
 
 class MainActivity : AppCompatActivity() {
 
-    val nbButtons = 4
+    val nbButtons = 6
     val buttonList = arrayListOf<ButtonModel>()
     val button1 = ButtonModel(1, "Manger", R.drawable.faim, R.raw.faim)
     val button2 = ButtonModel(2,"Boire", R.drawable.soif, R.raw.soif)
