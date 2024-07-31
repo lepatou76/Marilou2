@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ParametersActivity"
+    android:background="@color/grey_screen"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/nb_button_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginVertical="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/modif_button_spinner_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/nb_button_textview"
+            style="@style/default_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/change_nb_buttons"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+
+        <Spinner
+            android:id="@+id/button_spinner_input"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:entries="@array/nb_buttons_input"
+            android:theme="@style/Spinner"
+            tools:ignore="VisualLintBounds,DuplicateSpeakableTextCheck" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/modif_button_spinner_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:layout_marginVertical="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/change_password_and_delay_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/modif_button"
+            style="@style/default_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/select_button_modification"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+
+        <Spinner
+            android:id="@+id/button_spinner_modif"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:entries="@array/nb_buttons_input"
+            android:theme="@style/Spinner" />
+
+        <Button
+            android:id="@+id/upload_button_selected"
+            style="@style/default_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/upload_informations"
+            app:strokeColor="#3F9AA6"
+            app:strokeWidth="2sp"
+            tools:ignore="VisualLintBounds" />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/password_change_layout"
+        android:layout_width="230dp"
+        android:layout_height="180dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:background="@drawable/layout_password"
+        android:elevation="5dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.utils.widget.MotionLabel
+            android:id="@+id/motionLabel"
+            style="@style/default_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/choose_password"
+            android:textColor="@color/white" />
+
+        <EditText
+            android:id="@+id/password_change_text_edit"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/middle_blue"
+            android:textColor="@color/white"
+            android:textCursorDrawable="@color/white"
+            android:textSize="30sp"
+            android:inputType="number"
+            android:imeOptions="actionDone"
+            tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck,TextFields" />
+
+        <Button
+            android:id="@+id/password_change_valid_button"
+            style="@style/default_text_style"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:text="OK"
+            app:strokeColor="#3F9AA6"
+            app:strokeWidth="2sp"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/change_password_and_delay_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="140dp"
+        android:layout_gravity="center_vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="20dp">
+
+        <Button
+            android:id="@+id/password_change_button"
+            style="@style/default_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:text="@string/change_password"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="#3F9AA6"
+            app:strokeWidth="2sp" />
+
+        <TextView
+            android:id="@+id/textView"
+            style="@style/default_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp"
+            android:text="@string/delay_inactive_button"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/password_change_button"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <EditText
+            android:id="@+id/editTextDelay"
+            style="@style/default_text_style"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/middle_blue"
+            android:elevation="10dp"
+            android:inputType="number"
+            android:shadowColor="@color/black"
+            android:text="3"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+
+            app:layout_constraintEnd_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            tools:ignore="Autofill,HardcodedText,LabelFor" />
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/default_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/delay_unit"
+            android:textColor="@color/white"
+            android:paddingEnd="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/change_password_and_delay_layout">
+
+        <Button
+            android:id="@+id/reset_app"
+            style="@style/default_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:text="@string/reset"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:strokeColor="@color/warning"
+            app:strokeWidth="5sp" />
+
+        <Button
+            android:id="@+id/read_notice"
+            style="@style/default_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/read_notice"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/reset_app"
+            app:strokeColor="@color/green"
+            app:strokeWidth="5sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/confirm_reset_layout"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layout_password"
+        android:gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:elevation="10dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/comic_neue_bold"
+            android:text="@string/reset_app"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/comic_neue_bold"
+            android:text="@string/text_reset_warning"
+            android:gravity="center_horizontal"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/yes_reset_button"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/black"
+                android:text="@string/yes"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:strokeColor="@color/warning"
+                app:strokeWidth="2sp"/>
+
+            <Button
+                android:id="@+id/no_reset_button"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/black"
+                android:text="@string/no"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:strokeColor="@color/warning"
+                app:strokeWidth="2sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/valid_button1"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        style="@style/default_text_style"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/validate"
+        app:strokeColor="#3F9AA6"
+        app:strokeWidth="5sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="VisualLintOverlap" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

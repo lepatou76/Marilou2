@@ -8,19 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.marilou2.ButtonModel
 import com.example.marilou2.MainActivity
 import com.example.marilou2.R
 
-
 class ButtonAdapter(
     private val context: MainActivity,
-    //private val nbButtons: Int,
+    private val delay: Int,
     private val buttonList: List<ButtonModel>
 ): RecyclerView.Adapter<ButtonAdapter.ViewHolder>() {
 
-    val delaybase = 3
+
     // boite pour ranger les composants à controler
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         // image du bouton
@@ -36,6 +34,7 @@ class ButtonAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
         // recuperer les infos du bouton
         val currentButton = buttonList[position]
 
@@ -48,7 +47,7 @@ class ButtonAdapter(
             val sound = MediaPlayer.create(context, currentButton.son)
             sound.start()
             // désactiver le bouton pendant le délai paramétré pour éviter le spam
-            var delay = (delaybase.toInt() * 1000).toLong()
+            var delay = (delay * 1000).toLong()
             holder.itemView.isEnabled = (false)
             Handler().postDelayed({
                 holder.itemView.isEnabled = (true)
