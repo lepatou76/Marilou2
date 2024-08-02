@@ -21,9 +21,25 @@ class ParametersActivity : AppCompatActivity() {
     private val fileNameInfos = "InfosSavedList"
     private var infosSaved = InfosSaved()
     private val infosType = object : TypeToken<InfosSaved>() {}.type
+
+    val buttonList = arrayListOf<ButtonModel>()
+    val button1 = ButtonModel(1, "Manger", R.drawable.faim, R.raw.faim)
+    val button2 = ButtonModel(2,"Boire", R.drawable.soif, R.raw.soif)
+    val button3 = ButtonModel(3, "Toilettes", R.drawable.toilettes, R.raw.envie_pipi)
+    val button4 = ButtonModel(4,"Dormir", R.drawable.sommeil, R.raw.dormir)
+    val button5 = ButtonModel(5,"Jouer", R.drawable.jouer, R.raw.jouer)
+    val button6 = ButtonModel(6,"Se promener", R.drawable.promener, R.raw.promener)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_parameters)
+
+        buttonList.add(button1)
+        buttonList.add(button2)
+        buttonList.add(button3)
+        buttonList.add(button4)
+        buttonList.add(button5)
+        buttonList.add(button6)
 
         // Recupération et affichage des infos sauvegardées si existantes
         if(Serializer.deSerialize(fileNameInfos,this) !=null){
@@ -42,7 +58,7 @@ class ParametersActivity : AppCompatActivity() {
         // cacher le layout de confirmation réinitialisation
         findViewById<LinearLayout>(R.id.confirm_reset_layout).visibility = View.GONE
 
-        //selectButton()
+        selectButton()
         changePassword()
         validParameters()
 
@@ -59,6 +75,19 @@ class ParametersActivity : AppCompatActivity() {
             val intent = Intent(Intent.ACTION_QUICK_VIEW)
             intent.setDataAndType(Uri.parse(url), "application/pdf")
            startActivity(intent)
+        }
+    }
+
+    // pour ouvrir le fragment Button avec le bouton selectionné
+    private fun selectButton(){
+        val uploadSelectedButton = findViewById<Button>(R.id.upload_button_selected)
+        uploadSelectedButton.setOnClickListener {
+            val position =
+                findViewById<Spinner>(R.id.button_spinner_modif).selectedItem.toString().toInt() - 1
+
+            val intent = Intent(this, ButtonActivity::class.java)
+            intent.putExtra("selected_button", position)
+            startActivity(intent)
         }
     }
     // pour modifier le mot de passe
