@@ -182,8 +182,8 @@
             android:text="3"
             android:textAlignment="center"
             android:textColor="@color/white"
-
-            app:layout_constraintEnd_toStartOf="@+id/textView2"
+            android:layout_marginLeft="50dp"
+            app:layout_constraintStart_toEndOf="@+id/password_change_button"
             app:layout_constraintTop_toBottomOf="@+id/textView"
             tools:ignore="Autofill,HardcodedText,LabelFor" />
 
@@ -195,7 +195,7 @@
             android:layout_marginTop="15dp"
             android:text="@string/delay_unit"
             android:textColor="@color/white"
-            android:paddingEnd="50dp"
+            android:paddingEnd="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 

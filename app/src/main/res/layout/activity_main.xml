@@ -33,28 +33,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recycler_view_buttons_one" />
 
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/exit_Button"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        style="@style/default_text_style"
-        android:text="@string/exit"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
         android:backgroundTint="@color/middle_blue"
+        android:src="@drawable/exit_image"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/white"
+        tools:ignore="SpeakableTextPresentCheck" />
 
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/parameters_button"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:fontFamily="@font/comic_neue_bold"
-        android:text="@string/app_parameters"
-        android:textSize="17sp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="5dp"
+        android:layout_marginBottom="5dp"
         android:backgroundTint="@color/middle_blue"
+        android:src="@drawable/parameters_image"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="@color/white"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <LinearLayout
         android:id="@+id/password_layout"

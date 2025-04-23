@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.example.marilou2.ButtonsRepository.Singleton.buttonList
 import com.example.marilou2.R
 
 class ButtonActivity() : AppCompatActivity() {
@@ -24,26 +25,9 @@ class ButtonActivity() : AppCompatActivity() {
     private var soundChange = 0
     private var buttonID: Int = -1
 
-
-    val buttonList = arrayListOf<ButtonModel>()
-    val button1 = ButtonModel(1, "Manger", R.drawable.faim, R.raw.faim)
-    val button2 = ButtonModel(2,"Boire", R.drawable.soif, R.raw.soif)
-    val button3 = ButtonModel(3, "Toilettes", R.drawable.toilettes, R.raw.envie_pipi)
-    val button4 = ButtonModel(4,"Dormir", R.drawable.sommeil, R.raw.dormir)
-    val button5 = ButtonModel(5,"Jouer", R.drawable.jouer, R.raw.jouer)
-    val button6 = ButtonModel(6,"Se promener", R.drawable.promener, R.raw.promener)
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_button)
-
-        buttonList.add(button1)
-        buttonList.add(button2)
-        buttonList.add(button3)
-        buttonList.add(button4)
-        buttonList.add(button5)
-        buttonList.add(button6)
 
         // récupérer le bouton et ses infos par son ID
 
@@ -59,8 +43,8 @@ class ButtonActivity() : AppCompatActivity() {
         // recupérer et afficher les infos du boutons choisi
         findViewById<EditText>(R.id.editText_action).text = SpannableStringBuilder(button.name)
         findViewById<EditText>(R.id.editText_position).text = SpannableStringBuilder((button.position).toString())
-        findViewById<ImageView>(R.id.imageView_button).setImageResource(button.image)
-        sound = MediaPlayer.create(this, button.son)
+        Glide.with(this).load(Uri.parse(button.imageUrl)).into(findViewById(R.id.imageView_button))
+        sound = MediaPlayer.create(this, Uri.parse(button.sonUrl))
         sound?.start()
 
         listenButton()

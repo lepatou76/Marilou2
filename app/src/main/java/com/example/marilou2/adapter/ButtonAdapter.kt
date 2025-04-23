@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.marilou2.ButtonModel
 import com.example.marilou2.MainActivity
 import com.example.marilou2.R
@@ -39,12 +40,12 @@ class ButtonAdapter(
         val currentButton = buttonList[position]
 
         // utiliser glide pour mettre à jour l'image
-        holder.buttonImage.setImageResource(currentButton.image)
+        Glide.with(context).load(Uri.parse(currentButton.imageUrl)).into(holder.buttonImage)
 
         // interaction lors du clic sur un bouton
         holder.itemView.setOnClickListener {
             // Lancer le son
-            val sound = MediaPlayer.create(context, currentButton.son)
+            val sound = MediaPlayer.create(context, Uri.parse(currentButton.sonUrl))
             sound.start()
             // désactiver le bouton pendant le délai paramétré pour éviter le spam
             var delay = (delay * 1000).toLong()
