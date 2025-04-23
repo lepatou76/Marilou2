@@ -6,6 +6,7 @@ import android.media.MediaPlayer
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.text.SpannableStringBuilder
 import android.view.View
 import android.widget.Button
@@ -13,6 +14,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.example.marilou2.ButtonsRepository.Singleton.buttonList
+import com.example.marilou2.ButtonsRepository
 import com.example.marilou2.R
 
 class ButtonActivity() : AppCompatActivity() {
@@ -49,7 +51,7 @@ class ButtonActivity() : AppCompatActivity() {
 
         listenButton()
         changeAction()
-        //validButton(view)
+        validButton()
 
         // initialisation de l'image dans les parametres
         uploadedImage = findViewById(R.id.imageView_button)
@@ -72,6 +74,27 @@ class ButtonActivity() : AppCompatActivity() {
             intent.data = Uri.parse(url)
             startActivity(intent)
         }
+        // recuperer le bouton pour sauvegarder la nouvelle image
+        val saveNewImage = findViewById<Button>(R.id.save_new_image)
+        // clique pour sauver les changements
+        saveNewImage.setOnClickListener {
+            // message attente visible 3s
+            findViewById<Button>(R.id.waiting_upload).visibility = View.VISIBLE
+            Handler().postDelayed({
+                findViewById<Button>(R.id.waiting_upload).visibility = View.GONE
+            }, 2000)
+            saveImage()}
+        // recuperer le bouton pour sauvegarder le nouveau son
+        val saveNewSound = findViewById<Button>(R.id.save_new_sound)
+        // clique pour sauver les changements
+        saveNewSound.setOnClickListener {
+            // message attente visible 3s
+            findViewById<Button>(R.id.waiting_upload).visibility = View.VISIBLE
+            Handler().postDelayed({
+                findViewById<Button>(R.id.waiting_upload).visibility = View.GONE
+            }, 2000)
+            saveSound()}
+
     }
     // pour aller chercher une image dans l'appareil
     private fun pickupImage() {
@@ -112,6 +135,52 @@ class ButtonActivity() : AppCompatActivity() {
         }
     }
 
+    // Pour sauvegarder l'image dans Firebase si on est allé en selectionner un nouveau
+    private fun saveImage() {
+        val repo = ButtonsRepository()
+
+        if(imageChange > 0){
+            repo.uploadImage(fileImage!!){
+                val position = findViewById<EditText>(R.id.editText_position).text.toString().toInt()
+                val action = findViewById<EditText>(R.id.editText_action).text.toString()
+                val soundUrl = buttonList[position - 1].sonUrl
+                val downloadImageUrl = ButtonsRepository.Singleton.downloadImageUri.toString()
+                // créer le nouveau bouton
+                val newButton = ButtonModel(
+                    position,
+                    action,
+                    downloadImageUrl,
+                    soundUrl)
+                // mettre à jour dans la bdd
+                repo.updateButton(newButton)
+                imageChange = 0
+            }
+        }
+    }
+
+    // Pour sauvegarder le son dans Firebase si on est allé en selectionner une nouvelle
+    private fun saveSound() {
+        val repo = ButtonsRepository()
+
+        if(soundChange > 0){
+            repo.uploadSound(fileSound!!){
+                val position = findViewById<EditText>(R.id.editText_position).text.toString().toInt()
+                val action = findViewById<EditText>(R.id.editText_action).text.toString()
+                val imageUrl = buttonList[position - 1].imageUrl
+                val downloadSoundUrl = ButtonsRepository.Singleton.downloadSoundUri.toString()
+                // créer le nouveau bouton
+                val newButton = ButtonModel(
+                    position,
+                    action,
+                    imageUrl,
+                    downloadSoundUrl)
+                // mettre à jour dans la bdd
+                repo.updateButton(newButton)
+                soundChange = 0
+            }
+        }
+    }
+
     // pour ecouter le son actuel
     private fun listenButton(){
         val listenButton = findViewById<Button>(R.id.listen_button)
@@ -125,6 +194,21 @@ class ButtonActivity() : AppCompatActivity() {
         val changeAction = findViewById<EditText>(R.id.editText_action)
         changeAction.setOnClickListener {
             changeAction.setSelection(changeAction.text.length)
+        }
+    }
+
+    private fun validButton() {
+        // recuperer le bouton
+        val validButton = findViewById<Button>(R.id.valid_button2)
+        // interaction
+        validButton?.setOnClickListener {
+            // recuperation et sauvegarde de l'action (name) du bouton au cas ou changement
+            val newAction = findViewById<EditText>(R.id.editText_action).text.toString()
+            val position = findViewById<EditText>(R.id.editText_position).text.toString()
+            ButtonsRepository.Singleton.databaseRef.child("button" + position).child("name").setValue(newAction)
+            // retourner à l'écran principal
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 }
